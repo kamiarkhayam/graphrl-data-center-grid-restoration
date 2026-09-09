@@ -15,7 +15,16 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
-dev = ["pytest", "ruff"]
+dev = ["pytest", "ruff", "build"]
+mapping = ["geopandas>=1.1.3,<2", "pyproj>=3.6,<4", "pyogrio>=0.7.2,<1"]
+
+[project.scripts]
+dc-fetch-intro-map-sources = "dc_restoration.spatial.cli:fetch_main"
+dc-prepare-intro-map = "dc_restoration.spatial.cli:prepare_main"
+dc-generate-intro-map = "dc_restoration.spatial.cli:generate_main"
+
+[tool.setuptools.package-data]
+"dc_restoration.spatial" = ["intro_map.yaml", "source_manifest.json"]
 
 [tool.setuptools.packages.find]
 where = ["src"]

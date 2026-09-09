@@ -10,6 +10,9 @@ permissions:
 jobs:
   validate:
     runs-on: windows-latest
+    strategy:
+      matrix:
+        mapping: [false, true]
     env:
       PYTHONDONTWRITEBYTECODE: "1"
       MPLBACKEND: Agg
@@ -25,6 +28,11 @@ jobs:
           python -m pip install -r requirements-lock.txt
           python -m pip install --no-build-isolation --no-deps -e ".[dev]"
           python -m pip check
+      - name: Install optional mapping dependencies
+        if: matrix.mapping
+        run: |
+          python -m pip install -r requirements-mapping-lock.txt
+          python -m pip check
       - name: Check formatting and unresolved names
         run: |
           python -m ruff check src scripts tests
@@ -33,3 +41,5 @@ jobs:
         run: python scripts/validate_installation.py
       - name: Run fast tests
         run: python -m pytest --basetemp=.runtime/pytest
+      - name: Build the package without downloading research inputs
+        run: python -m build --no-isolation --outdir .runtime/dist

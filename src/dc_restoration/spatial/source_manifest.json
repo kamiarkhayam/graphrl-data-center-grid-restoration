@@ -1,0 +1,92 @@
+{
+  "epri/index.html": {
+    "url": "https://powering-intelligence.epri.com/",
+    "retrieved_utc": "2026-09-09T18:32:52.850952+00:00",
+    "sha256": "da4ab2fd7884993d7cd4daab26ae09fbed759a220c2b310d49e732e472eaf10c",
+    "bytes": 1936
+  },
+  "epri/app-A720ndqo.js": {
+    "url": "https://powering-intelligence.epri.com/assets/app-A720ndqo.js",
+    "retrieved_utc": "2026-09-09T18:32:53.059203+00:00",
+    "sha256": "4ac0f730dc31cb01dddc1408394972afd9a6124bebdab4f6bd94d01960cc0ced",
+    "bytes": 536098
+  },
+  "epri/index.html-CpGgkVQI.js": {
+    "url": "https://powering-intelligence.epri.com/assets/index.html-CpGgkVQI.js",
+    "retrieved_utc": "2026-09-09T18:32:53.172336+00:00",
+    "sha256": "6a2cbab12a4186ed7b47cafebfc245982159acb766a84c95e7b42778030e0ed0",
+    "bytes": 1934
+  },
+  "epri/EpriButtons-CnFe-MI8.js": {
+    "url": "https://powering-intelligence.epri.com/assets/EpriButtons-CnFe-MI8.js",
+    "retrieved_utc": "2026-09-09T18:32:53.230239+00:00",
+    "sha256": "8afdccb73963258ab2f2e2df6ce10cfd3f2cfa640ca07c5f4e40aa4241b578bf",
+    "bytes": 2360
+  },
+  "epri/index.html-CBFkBBYg.js": {
+    "url": "https://powering-intelligence.epri.com/assets/index.html-CBFkBBYg.js",
+    "retrieved_utc": "2026-09-09T18:32:53.284793+00:00",
+    "sha256": "25f31d90c91c3a7439ca7cc1cc0ac91646f317f0092585dc61a57bfbcf601704",
+    "bytes": 364
+  },
+  "fema/layer_metadata.json": {
+    "url": "https://services.arcgis.com/XG15cJAlne2vxtgt/arcgis/rest/services/National_Risk_Index_Counties/FeatureServer/0?f=pjson",
+    "retrieved_utc": "2026-09-09T18:32:53.668815+00:00",
+    "sha256": "a4988221c682cdf06b82462ed233f037fe0454ea78f2320251a2b8596aab3892",
+    "bytes": 233077
+  },
+  "fema/item_metadata.json": {
+    "url": "https://www.arcgis.com/sharing/rest/content/items/39485e8035d446a5bff03259508ae355?f=pjson",
+    "retrieved_utc": "2026-09-09T18:32:53.981351+00:00",
+    "sha256": "ce0e0df6cde8e78149219fcf33113895cf23c7c6f1adaf1603351c076a25d5d4",
+    "bytes": 38597
+  },
+  "epri/dashboard.html": {
+    "url": "https://powering-intelligence.epri.com/dashboard/",
+    "retrieved_utc": "2026-09-09T18:33:08.592239+00:00",
+    "sha256": "6c6401d52bdfc9458d39b32695077dfd1aa0cb51f3ea74ea79221c036e167494",
+    "bytes": 1837
+  },
+  "epri/index.html-BJMI_gnF.js": {
+    "url": "https://powering-intelligence.epri.com/assets/index.html-BJMI_gnF.js",
+    "retrieved_utc": "2026-09-09T18:33:08.661965+00:00",
+    "sha256": "76779f75413deb2abd76967c4430c4a9d1cc82cc1f0527896a4d207cc236de04",
+    "bytes": 352
+  },
+  "epri/index.html-BnOKIAPk.js": {
+    "url": "https://powering-intelligence.epri.com/assets/index.html-BnOKIAPk.js",
+    "retrieved_utc": "2026-09-09T18:33:26.252882+00:00",
+    "sha256": "716ba116e3f928abfa711e7cc655f8d009c3bea7f8d72e33d2c10adf84733fab",
+    "bytes": 365611
+  },
+  "fema/counties_0.geojson": {
+    "url": "https://services.arcgis.com/XG15cJAlne2vxtgt/arcgis/rest/services/National_Risk_Index_Counties/FeatureServer/0/query?f=geojson&where=1%3D1&outFields=OBJECTID%2CSTATE%2CSTATEABBRV%2CSTATEFIPS%2CCOUNTY%2CSTCOFIPS%2CHRCN_AFREQ%2CHRCN_EVNTS%2CHRCN_RISKR%2CHRCN_EALR&returnGeometry=true&outSR=4326&maxAllowableOffset=0.005&geometryPrecision=5&orderByFields=OBJECTID&resultOffset=0&resultRecordCount=2000",
+    "retrieved_utc": "2026-09-09T18:35:18.276872+00:00",
+    "sha256": "f87b6b95827e4bb82cb210ccffdb98279b924f2e90f3fa107018925f78caa931",
+    "bytes": 4735965
+  },
+  "fema/counties_2000.geojson": {
+    "url": "https://services.arcgis.com/XG15cJAlne2vxtgt/arcgis/rest/services/National_Risk_Index_Counties/FeatureServer/0/query?f=geojson&where=1%3D1&outFields=OBJECTID%2CSTATE%2CSTATEABBRV%2CSTATEFIPS%2CCOUNTY%2CSTCOFIPS%2CHRCN_AFREQ%2CHRCN_EVNTS%2CHRCN_RISKR%2CHRCN_EALR&returnGeometry=true&outSR=4326&maxAllowableOffset=0.005&geometryPrecision=5&orderByFields=OBJECTID&resultOffset=2000&resultRecordCount=2000",
+    "retrieved_utc": "2026-09-09T18:35:28.783377+00:00",
+    "sha256": "bd887153561bc0e57b07d460aaa5dda139f44024831e177e173fd6263173917e",
+    "bytes": 1912800
+  },
+  "census/cb_2024_us_state_5m.zip": {
+    "url": "https://www2.census.gov/geo/tiger/GENZ2024/shp/cb_2024_us_state_5m.zip",
+    "retrieved_utc": "2026-09-09T18:35:29.202561+00:00",
+    "sha256": "c9db0e395c11a1f94a8017fde4f4c7cbee1dca6eb37ba8f1ccaab927df70885f",
+    "bytes": 1122055
+  },
+  "fema/hazard_info_item.json": {
+    "url": "https://www.arcgis.com/sharing/rest/content/items/1cb56c682f6f4ce08a07ff372a7908b0?f=pjson",
+    "retrieved_utc": "2026-09-09T18:35:29.468799+00:00",
+    "sha256": "35c234e086b20a43d33744ad3c1deced376a0eaf2a700022f9d903e4c80700bf",
+    "bytes": 36769
+  },
+  "fema/hazard_info.json": {
+    "url": "https://services.arcgis.com/XG15cJAlne2vxtgt/arcgis/rest/services/National_Risk_Index_Hazard_Info_Table/FeatureServer/0/query?f=json&where=1%3D1&outFields=%2A&returnGeometry=false",
+    "retrieved_utc": "2026-09-09T18:35:54.683028+00:00",
+    "sha256": "7820e5d8441d1f2163d6e2cb88087506dd3a87645b47cbbded5bcdf065869655",
+    "bytes": 7303
+  }
+}

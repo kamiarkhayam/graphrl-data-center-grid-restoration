@@ -102,6 +102,15 @@ Bounded GA requires its locked cohort and damage table and retains the reported 
 
 ## Repository structure
 
+The original introductory spatial map combines EPRI's medium-scenario 2030-minus-2024
+state electricity-use growth with FEMA historical hurricane frequency and Census
+boundaries. Install the optional mapping dependencies with `python -m pip install -e ".[mapping]"`.
+The explicit commands `dc-fetch-intro-map-sources`, `dc-prepare-intro-map`, and
+`dc-generate-intro-map` fetch, prepare, and draw the version-3 map. See the
+[map reproduction guide](docs/intro_map_reproduction.md) for offline cache use,
+configuration, sources, output formats, and interpretation. No map datasets or
+generated figures are bundled.
+
 | Path | Purpose |
 |---|---|
 | `src/dc_restoration/` | Testbed, hazards, restoration, anchors, policies, evaluation, economics and plotting libraries |

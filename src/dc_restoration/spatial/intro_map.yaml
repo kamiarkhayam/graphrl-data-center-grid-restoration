@@ -1,0 +1,5 @@
+# Version-3 science and style are fixed; only workflow locations are configurable.
+# Relative paths use --root / DC_RESTORATION_ROOT or the repository/current directory.
+cache_dir: data/external/intro_map/raw
+prepared_dir: outputs/intro_map/data_processed
+output_dir: outputs/intro_map/figures
