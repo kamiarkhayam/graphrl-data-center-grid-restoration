@@ -1,0 +1,5 @@
+method: CNN-A2C
+architecture: cnn
+algorithm: a2c
+training_config: configs/policies/training.yaml
+evaluation_config: configs/evaluation/paper.yaml

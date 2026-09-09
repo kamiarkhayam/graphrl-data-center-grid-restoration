@@ -1,0 +1,119 @@
+experiment_name: restoration_anchor_testbed
+random_seed: 2303
+paths:
+  project_root: .
+  output_dir: outputs/testbed/benchmark
+  benchmark_case_dir: outputs/testbed/benchmark_case
+  parsed_distribution_dir: data/external/parsed_distribution
+  raw_distribution_dir: data/external/data_raw/distribution
+  texas7k_zip: data/external/data_raw/transmission/Texas7k_20220228.zip
+selected_candidate:
+  candidate_name: SMART_DS_P49U_raw_OpenDSS_composite
+  source_note: Locally available SMART-DS/OpenDSS parsed P49U feeder data; benchmark-derived
+    synthetic distribution feeder, not a real utility feeder.
+  composition: three spatially transformed copies under three synthetic substations
+geography:
+  regions:
+  - region_id: BENCH_HOUSTON_CORE
+    id_prefix: BHC
+    latitude_shift: 0.0
+    longitude_shift: 0.0
+    load_scale: 1.0
+    coordinate_scale: 1.0
+  - region_id: BENCH_SHIP_CHANNEL
+    id_prefix: BSC
+    latitude_shift: 0.22
+    longitude_shift: 0.33
+    load_scale: 1.08
+    coordinate_scale: 1.18
+  - region_id: BENCH_COASTAL_SOUTHWEST
+    id_prefix: BCS
+    latitude_shift: -0.21
+    longitude_shift: -0.36
+    load_scale: 0.92
+    coordinate_scale: 1.24
+  super_source_node: T_SUPER_SOURCE_V03
+network_targets:
+  min_nodes: 1500
+  min_loads: 800
+  min_substations: 3
+  min_feeders: 10
+  min_critical_loads: 30
+  dc_anchor_count: 3
+  max_single_anchor_share: 0.25
+  preferred_single_anchor_share: 0.2
+  max_combined_anchor_share: 0.5
+scenarios:
+  monte_carlo_per_variant: 25
+  source_storms:
+  - source_storm_id: AL031983
+    storm_name: ALICIA
+    year: 1983
+    base_damage_mean: 24
+  - source_storm_id: AL011943
+    storm_name: UNNAMED
+    year: 1943
+    base_damage_mean: 19
+  - source_storm_id: AL011921
+    storm_name: UNNAMED
+    year: 1921
+    base_damage_mean: 18
+  - source_storm_id: AL011900
+    storm_name: UNNAMED
+    year: 1900
+    base_damage_mean: 17
+  - source_storm_id: AL021915
+    storm_name: UNNAMED
+    year: 1915
+    base_damage_mean: 15
+  - source_storm_id: AL051945
+    storm_name: UNNAMED
+    year: 1945
+    base_damage_mean: 15
+  variants:
+  - suffix: historical
+    augmentation_type: historical_observed
+    scenario_class: historical_observed
+    intensity_scale: 1.0
+    track_shift_km: 0
+  - suffix: intensity115
+    augmentation_type: intensity_scaled
+    scenario_class: intensity_scaled
+    intensity_scale: 1.15
+    track_shift_km: 0
+  - suffix: intensity130
+    augmentation_type: intensity_scaled
+    scenario_class: intensity_scaled
+    intensity_scale: 1.3
+    track_shift_km: 0
+  - suffix: shiftE30
+    augmentation_type: augmented_track
+    scenario_class: augmented_track
+    intensity_scale: 1.2
+    track_shift_km: 30
+  - suffix: shiftW30
+    augmentation_type: augmented_track
+    scenario_class: augmented_track
+    intensity_scale: 1.2
+    track_shift_km: -30
+  split_by_source_storm:
+    train:
+    - AL031983
+    - AL011943
+    - AL011921
+    - AL011900
+    validation:
+    - AL021915
+    test:
+    - AL051945
+  severe_damage_threshold: 10
+  destructive_damage_threshold: 15
+  severe_unserved_mw_threshold: 15.0
+  critical_unserved_mw_threshold: 1.0
+  anchor_unserved_mw_threshold: 1.0
+  multi_island_threshold: 3
+restoration_env:
+  candidate_k: 50
+  single_crew: true
+  dc_controller: rule_based_anchor
+  dc_scenario: moderate_anchor

@@ -1,0 +1,5 @@
+method: Random Top-K
+architecture: random
+algorithm: null
+training_config: configs/policies/training.yaml
+evaluation_config: configs/evaluation/paper.yaml

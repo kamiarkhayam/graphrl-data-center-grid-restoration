@@ -1,0 +1,4 @@
+scenario_key,edge_id,repair_time_hours
+toy_damage,e0,2
+toy_damage,e1,3
+toy_damage,e2,1

@@ -1,0 +1,5 @@
+method: GraphRL-PPO
+architecture: true_gnn
+algorithm: ppo
+training_config: configs/policies/training.yaml
+evaluation_config: configs/evaluation/paper.yaml

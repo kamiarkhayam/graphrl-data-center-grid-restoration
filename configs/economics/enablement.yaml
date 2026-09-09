@@ -1,0 +1,140 @@
+experiment_name: enablement
+analysis:
+  selected_policy: true_gnn_lookahead_bc_a2c
+  selected_policy_display: True-GNN-A2C
+  primary_subset: benchmark_hard_historical_nonzero
+  primary_valuation_method: Duration-dependent sector valuation
+  resource_case_order:
+  - E12
+  - E24
+  - Power-only reference
+  recurrence_interval_years:
+  - 1.0
+  - 2.0
+  - 5.0
+  - 10.0
+  - 20.0
+  - 50.0
+  reference_recurrence_years: 10.0
+  project_life_years: 20
+  real_discount_rate: 0.031
+  analysis_dollar_year: 2025
+event_operating_cost:
+  local_health_dollars_per_mwh: 187.59076802240386
+  health_assumption: 95% SCR NOx reduction or equivalent lower-emission control
+  include_provider_fuel_and_vom: true
+  include_local_health_damage: true
+  include_climate_damage: true
+incremental_capital:
+  cpi_u_2022: 292.655
+  cpi_u_2025: 321.943
+  area_cost_factor: 0.92
+  contingency_fraction_of_direct_subtotal: 0.2
+  overhead_fraction_of_loaded_contract: 0.057
+  design_fraction_of_loaded_contract: 0.06
+  estimate_class_multipliers:
+    low: 0.7
+    reference: 1.0
+    high: 1.65
+  cost_cases:
+    high_reuse_integration_screen:
+      display_name: High-reuse integration screen
+      included_line_items:
+      - Cybersecurity and commissioning
+      - Communications, metering, relays, and breakers
+      completeness: lower-bound screen
+      role: Assumes existing export-capable switchgear, generator controls, facility
+        SCADA, transformers, and interties can be reused.
+    conservative_export_retrofit:
+      display_name: Conservative export retrofit analog
+      included_line_items:
+      - Switchgear modification
+      - Microgrid controller
+      - Cybersecurity and commissioning
+      - Communications, metering, relays, and breakers
+      completeness: conservative controls/protection analog
+      role: Prices a complete three-site controls and protection package while reusing
+        existing generation, transformers, interties, and SCADA backbone.
+    all_new_scada_linear_upper:
+      display_name: All-new SCADA extrapolation
+      included_line_items:
+      - Switchgear modification
+      - Microgrid controller
+      - Cybersecurity and commissioning
+      - Communications, metering, relays, and breakers
+      - New SCADA integration
+      completeness: upper sensitivity
+      role: Retains the prior linear 15 MW SCADA extrapolation only as an upper sensitivity;
+        it is not the reference cost.
+    dedicated_feeder_upper:
+      display_name: Dedicated-feeder upper sensitivity
+      included_line_items:
+      - Switchgear modification
+      - Microgrid controller
+      - Cybersecurity and commissioning
+      - Communications, metering, relays, and breakers
+      - New SCADA integration
+      - Routed underground dedicated feeder
+      completeness: extreme conditional sensitivity
+      role: Applies only if existing electrical paths cannot be reused; not part of
+        the primary analysis.
+  source_urls:
+    nrel_sein_analog: https://www.nrel.gov/docs/fy22osti/81623.pdf
+    nrel_microgrid_cost_scaling: https://www.nrel.gov/docs/fy19osti/67821.pdf
+    nrel_atb_grid_connection: https://atb.nrel.gov/electricity/2024b/definitions
+    lbl_interconnection_costs: https://emp.lbl.gov/publications/generator-interconnection-costs-0
+fixed_om:
+  annual_incremental_fom_screening_dollars:
+  - 0.0
+  - 25000.0
+  - 50000.0
+  - 100000.0
+  selected_point_estimate: null
+  scope: Incremental annual software, telecommunications, cybersecurity, relay and
+    meter testing, and recommissioning required solely for community export.
+  exclusions: Ordinary data-center and standby-generator fixed O&M that exists without
+    community export.
+external_reasonableness_benchmarks:
+  nrel_atb_typical_grid_connection:
+    display_name: NREL ATB typical grid connection
+    source_value_dollars_per_kw: 100.0
+    source_dollar_year: 2022
+    inflation_to_2025: true
+    scope_note: Generic utility-scale point-of-interconnection, short spur line, and
+      nominal network-upgrade assumption; comparison only.
+  lbl_completed_non_iso_projects:
+    display_name: Berkeley Lab completed-project mean
+    source_value_dollars_per_kw: 194.0
+    source_dollar_year: as published
+    inflation_to_2025: false
+    scope_note: Mean for completed non-ISO interconnections in 2018-2024; not an intentional-island
+      retrofit estimate.
+stage2:
+  community_enablement_shares:
+  - 0.0
+  - 0.25
+  - 0.5
+  - 1.0
+  selected_rate_case: reference_half_growth
+  selected_fiscal_case: reference
+  community_fom_share_equals_capital_share: true
+  routine_generator_annual_hours: 6.5
+  routine_generator_average_capacity_fraction: 0.5
+  routine_generator_local_health_dollars_per_mwh: 187.59076802240386
+  routine_generator_climate_damage_dollars_per_mwh: 166.76677045461943
+documentation:
+  stage1_label: Incremental export-enablement engineering resource BCR
+  stage2_label: Host-community benefit-to-burden incidence screen
+  primary_decision_rule: Report the maximum support-only capital consistent with BCR
+    >= 1 as a function of recurrence and annual incremental fixed O&M.
+  capital_warning: Capital is a one-time resource cost. Equivalent annual capital
+    is an accounting conversion, not a recurring construction payment.
+  fom_warning: Fixed O&M is reported separately from capital and event variable O&M;
+    screening values are decision coordinates, not sourced point estimates.
+  recurrence_warning: Recurrence intervals are sensitivities, not inferred hurricane
+    return periods.
+  cost_warning: Cost packages are AACE Class 5 analog screens. Site-specific export
+    readiness and utility studies are required before selecting a point estimate.
+  payer_warning: Technical cost attribution is distinct from payer share. Lifecycle export-enablement assessment
+    counts full incremental resource cost; Host-community incidence assessment varies the host-community-funded
+    share.

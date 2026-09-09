@@ -1,0 +1,14 @@
+dc_evaluation:
+  candidate_k: 50
+  deterministic: true
+  controller: rule_based_anchor
+  allocation_mode: critical_first_fixed_priority
+  resources:
+  - R0_no_dc_anchor
+  - R1_current_power_bounded_anchor
+  - E12_finite_energy_12h
+  - E24_finite_energy_24h
+  policies:
+  - Greedy
+  - GraphRL-A2C
+  progress_every: 10

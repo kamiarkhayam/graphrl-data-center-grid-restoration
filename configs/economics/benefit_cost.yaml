@@ -1,0 +1,38 @@
+# All keys are validated and used. See docs/configuration.md for accounting boundaries.
+inputs:
+  dc_results: outputs/analysis/dc_anchor/dc_results_by_episode.csv
+  event_costs: data/external/economics/event_resource_ledger.csv
+  capital_summary: data/external/economics/capital_summary.csv
+  community_ledger: data/external/economics/community_incidence_inputs.csv
+analysis:
+  selected_policy: GraphRL-A2C
+  physical_subset: benchmark_hard_historical_nonzero
+  event_cost_valuation_method: Duration-dependent sector valuation
+  reference_event_interval_years: 10
+  event_intervals_years:
+  - 1
+  - 2
+  - 5
+  - 10
+  - 20
+  - 50
+lifecycle:
+  capital_case: high_reuse_integration_screen
+  estimate_class: reference
+  real_discount_rate: 0.031
+  service_life_years: 20
+  fixed_export_om_dollars_per_year: 0.0
+community:
+  rate_case: reference_half_growth
+  fiscal_case: reference
+  reference_share: 0.5
+  shares:
+  - 0.0
+  - 0.25
+  - 0.5
+  - 1.0
+environment:
+  lifecycle_include_local_air_quality: true
+  lifecycle_include_climate: true
+  host_include_local_air_quality: true
+output_dir: outputs/benefit_cost

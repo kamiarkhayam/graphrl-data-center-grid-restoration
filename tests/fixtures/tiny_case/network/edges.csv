@@ -1,0 +1,6 @@
+edge_id,from_node,to_node,length_km,voltage_kv,phases,hurricane_damage_component_type,repair_time_hours_placeholder
+e0,T_SUPER_SOURCE_V03,J,0.01,12,3,overhead_line,2
+e1,J,A,0.01,12,3,overhead_line,2
+e2,J,B,0.01,12,3,overhead_line,2
+e3,T_SUPER_SOURCE_V03,C,0.01,12,3,overhead_line,2
+e4,J,D,0.01,12,3,overhead_line,2

@@ -1,0 +1,32 @@
+[build-system]
+requires = ["setuptools==84.0.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "graphrl-data-center-restoration"
+version = "0.1.0"
+description = "Research code for graph reinforcement learning and prescribed, power- and energy-constrained data-center support in sequential distribution-system restoration under hurricane-inspired disruptions, with resilience and benefit-cost evaluation."
+readme = "README.md"
+requires-python = ">=3.11"
+license = "MIT"
+dependencies = [
+  "numpy", "pandas", "networkx", "scipy", "torch", "PyYAML",
+  "matplotlib", "pyarrow", "requests", "shapely", "openpyxl", "dss-python",
+]
+
+[project.optional-dependencies]
+dev = ["pytest", "ruff"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q -p no:cacheprovider"
+
+[tool.ruff]
+target-version = "py311"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E9", "F63", "F7", "F82", "I"]

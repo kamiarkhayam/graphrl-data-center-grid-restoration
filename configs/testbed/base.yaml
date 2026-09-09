@@ -1,0 +1,182 @@
+project:
+  name: synthetic_gulf_texas_td_case
+  description: Benchmark-derived synthetic multi-region distribution-system testbed.
+paths:
+  raw_transmission_dir: data/external/data_raw/transmission
+  raw_distribution_dir: data/external/data_raw/distribution
+  raw_mapping_dir: data/external/data_raw/mapping
+  parsed_transmission_dir: outputs/testbed/data_intermediate/parsed_transmission
+  parsed_distribution_dir: outputs/testbed/data_intermediate/parsed_distribution
+  candidate_regions_dir: outputs/testbed/data_intermediate/candidate_regions
+  selected_region_dir: outputs/testbed/data_intermediate/selected_region
+  final_case_dir: outputs/testbed/data_processed/final_case
+  plots_dir: outputs/testbed/data_processed/final_case/plots
+  logs_dir: outputs/testbed/data_intermediate/logs
+sources:
+  transmission_archive:
+    bettergrids_handle_url: https://db.bettergrids.org/bettergrids/handle/1001/628
+    bettergrids_export_url: https://db.bettergrids.org/bettergrids/file-export
+    archive_name: Texas7k_20220228.zip
+    internal_powerworld_case: Texas7k/Texas7k_20220222.PWB
+    internal_mapping_workbook: Texas7k/Texas7k_LoadGenMap.xlsx
+  smart_ds:
+    bucket_name: oedi-data-lake
+    s3_rest_base_url: https://oedi-data-lake.s3.amazonaws.com
+    prefix: SMART-DS/v0.9/2016/Full_Texas
+    scenario: scenarios/base_timeseries/opendss
+    profiles_prefix: SMART-DS/v0.9/2016/Full_Texas/profiles
+    year: 2016
+candidate_regions:
+- label: houston_galveston
+  approximate_city_area: Houston / Galveston / Texas City
+  lat_min: 28.8
+  lat_max: 30.3
+  lon_min: -96.0
+  lon_max: -94.4
+- label: beaumont_port_arthur
+  approximate_city_area: Beaumont / Port Arthur
+  lat_min: 29.5
+  lat_max: 30.5
+  lon_min: -94.6
+  lon_max: -93.4
+- label: corpus_christi
+  approximate_city_area: Corpus Christi / South Texas coast
+  lat_min: 27.0
+  lat_max: 28.4
+  lon_min: -98.2
+  lon_max: -96.8
+- label: freeport_matagorda
+  approximate_city_area: Freeport / Matagorda / Bay City
+  lat_min: 28.3
+  lat_max: 29.4
+  lon_min: -96.5
+  lon_max: -95.0
+selection:
+  expanded_bbox_margin_degrees: 0.5
+  preferred_voltage_kv:
+  - 138.0
+  - 69.0
+  min_total_nodes: 200
+  preferred_min_nodes: 300
+  preferred_max_nodes: 800
+  hard_max_nodes: 1000
+  transmission_hops: 2
+  high_load_quantile: 0.9
+  critical_load_fraction_min: 0.03
+  critical_load_fraction_max: 0.07
+  dominant_component_fraction_min: 0.95
+  coordinate_coverage_fraction_min: 0.95
+  load_conservation_tolerance_fraction: 0.02
+representative_time_series:
+  representative_month: 9
+  representative_day: 15
+  hourly_downsample_rule: 1h
+classification:
+  load_types:
+  - residential
+  - commercial
+  - industrial_or_large_commercial
+  - critical
+  - data_center
+  - unknown
+  inferred_large_load_kw_threshold: 500
+voll_values_usd_per_kwh:
+  residential: 5
+  commercial: 25
+  industrial_or_large_commercial: 50
+  critical: 100
+  data_center: 200
+  unknown: 10
+data_center_defaults:
+  name: Gulf Anchor DC 1
+  critical_it_fraction: 0.7
+  flexible_it_fraction: 0.3
+  pue: 1.4
+  ups_duration_minutes: 30
+  minimum_survival_hours: 24
+  export_surplus_fraction_of_backup: 0.15
+  max_load_fraction_of_local_peak: 0.4
+  min_facility_load_mw: 20
+  max_facility_load_mw: 100
+  preferred_connection_kv:
+  - 138.0
+  - 69.0
+case_versions:
+  baseline_case_v0_dir: outputs/testbed/data_processed/final_case_v0
+  baseline_case_v0_1_dir: outputs/testbed/data_processed/final_case_v0_1
+time_series_metadata:
+  resolution_minutes: 15
+  days: 365
+  leap_day_omitted: true
+  baseline_p_kw_definition: nominal/base load field
+  peak_p_kw_definition: derived from delivered time series
+  average_p_kw_definition: derived from delivered time series
+  summary_peak_and_average_exclude_synthetic_data_centers: true
+deterministic_rules:
+  uses_random_seed: false
+  critical_load_assignment: 'Deterministic synthetic critical-load assignment based
+    on the highest baseline_p_kw non-residential load nodes, targeting roughly 5 percent
+    of aggregated load nodes.
+
+    '
+  baseline_data_center_placement: 'Deterministic placement at the selected 69-kV delivery
+    point with a fixed Houston-area coordinate offset used as a schematic/equivalent
+    dedicated service location.
+
+    '
+  candidate_and_scenario_selection: 'Deterministic scoring by voltage suitability,
+    feeder proximity, critical-load proximity, and interface distance; no random sampling
+    is used.
+
+    '
+placeholders:
+  hurricane_exposure_placeholder: 0.5
+  damage_probability_placeholder: 0.2
+  repair_time_hours_placeholder: 8.0
+geography:
+  texas_bounds:
+    lat_min: 25.0
+    lat_max: 37.0
+    lon_min: -107.0
+    lon_max: -93.0
+  simplified_texas_gulf_coastline:
+  - - 29.7604
+    - -95.3698
+  - - 29.3013
+    - -94.7977
+  - - 29.117
+    - -95.4191
+  - - 28.9589
+    - -95.3597
+  - - 28.9822
+    - -95.9694
+  - - 28.7569
+    - -95.6308
+  - - 28.7091
+    - -96.2175
+  - - 28.498
+    - -96.7836
+  - - 28.404
+    - -97.055
+  - - 27.8006
+    - -97.3964
+  - - 27.5806
+    - -97.2161
+bettergrids_download:
+  file_path: /home/dspace/dspace/assetstore/31/87/06/31870699144430711655391040611891146899
+  download_form: original
+  file_name: Texas7k_20220228.zip
+notes:
+  transmission_format_limitations: 'BetterGrids currently exposes the official Texas7k
+    bundle as a PowerWorld PWB archive plus the load/generator mapping workbook. If
+    a parseable MATPOWER/RAW export is unavailable during the automated run, the pipeline
+    falls back to a subtransmission/interface representation anchored by SMART-DS
+    substation buses and documents the limitation explicitly.
+
+    '
+  v0_1_cleanup_notes: 'baseline_case_v0_1 preserves the audited topology, clarifies
+    physical versus equivalent edge roles, keeps schematic source and data-center
+    service connections non-damageable, and adds optional data-center scenario overlays
+    without rebuilding the core T-D graph.
+
+    '

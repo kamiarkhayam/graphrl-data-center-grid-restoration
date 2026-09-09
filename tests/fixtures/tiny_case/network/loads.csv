@@ -1,0 +1,5 @@
+load_id,node_id,baseline_p_kw,average_p_kw,peak_p_kw,load_type,is_critical,voll_usd_per_kwh
+A,A,20000,20000,20000,commercial,True,100
+B,B,6000,6000,6000,commercial,False,25
+C,C,2,2,2,residential,False,10
+D,D,3000,3000,3000,residential,False,10

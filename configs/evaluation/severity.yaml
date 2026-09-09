@@ -1,0 +1,9 @@
+paths:
+  case_dir: data/external/benchmark_case
+  valuation_node_config: configs/economics/load_classes.yaml
+  valuation_duration_config: configs/economics/interruption_damage.yaml
+  benchmark_hard_scenario_manifest: data/external/benchmark_case/scenario_design/benchmark_hard_hurricane_scenario_manifest.csv
+  fresh_subset_manifest: data/external/evaluation/fresh_subset_manifest.csv
+  fresh_damage_components: data/external/evaluation/fresh_damage_components.csv
+valuation:
+  critical_value_usd_per_kwh: 100.0

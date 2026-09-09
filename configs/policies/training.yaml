@@ -1,0 +1,135 @@
+anchor_allocation_mode: critical_first_fixed_priority
+experiment_name: source_based_policy_training
+random_seed: 32
+paths:
+  case_dir: data/external/benchmark_case
+  output_dir: outputs/training
+  original_true_gnn_metadata: data/external/training/state_metadata.csv
+  duration_valuation_config: configs/economics/interruption_damage.yaml
+  node_replay_config: configs/economics/load_classes.yaml
+  fixed_controlled_manifest: data/external/evaluation/controlled_manifest.csv
+valuation:
+  name: source_based_economic_interruption_damage
+  critical_value_usd_per_kwh: 100.0
+  candidate_k: 50
+  controller: rule_based_anchor
+  lookahead_horizon_repairs: 5
+  normalized_damage_scale_dollars: 1000000.0
+dataset:
+  preserve_original_state_split: true
+  preserve_original_state_trajectory: true
+  include_splits:
+  - train
+  - validation
+  - test
+  train_splits:
+  - train
+  validation_splits:
+  - validation
+  test_splits:
+  - test
+  forbid_fresh_scenarios: true
+architecture_list:
+- true_gnn
+- mlp
+- cnn
+architectures:
+  hidden_dim: 64
+  message_passing_layers: 2
+  mlp_hidden_dim: 192
+  cnn_hidden_dim: 192
+  cnn_grid_resolution: 32
+  cnn_conv_channels: 24
+  cnn_spatial_embedding_dim: 96
+bc_training:
+  true_gnn_epochs: 120
+  encoder_epochs: 180
+  patience: 30
+  true_gnn_batch_size: 4
+  encoder_batch_size: 128
+  learning_rate: 0.0005
+  rank_weight: 0.6
+  high_improvement_weight: 2.0
+  checkpoint_every_epochs: 10
+rl_training:
+  primary_algorithm: a2c
+  matched_encoder_algorithms:
+  - a2c
+  true_gnn_algorithm_ablation:
+  - ppo
+  target_steps: 32768
+  smoke_steps: 512
+  checkpoint_every_steps: 1024
+  periodic_eval_every_steps: 4096
+  periodic_eval_episodes_per_subset: 2
+  learning_rate: 0.0001
+  n_steps_a2c: 128
+  n_steps_ppo: 256
+  minibatch_size: 8
+  ppo_epochs_per_update: 4
+  ppo_clip_range: 0.15
+  ppo_target_kl: 0.03
+  value_loss_coefficient: 0.5
+  entropy_schedule:
+  - - 0
+    - 0.005
+  - - 512
+    - 0.005
+  - - 4096
+    - 0.004
+  - - 16384
+    - 0.003
+  - - 32768
+    - 0.001
+  gamma: 0.99
+  gae_lambda: 0.95
+  max_grad_norm: 0.5
+  reward:
+    harmonized_damage_gain_weight: 1.0
+    unserved_gain_weight: 0.3
+    critical_gain_weight: 0.8
+    remaining_harmonized_damage_weight: 0.05
+    step_penalty: 0.01
+    episode_relative_weight: 1.0
+    worse_than_greedy_penalty_threshold: 0.1
+    worse_than_greedy_penalty: 0.5
+subsets:
+  main:
+  - benchmark_hard_severe
+  - benchmark_hard_long_sequence
+  - benchmark_hard_critical
+  - benchmark_hard_anchor_relevant
+  development:
+  - benchmark_hard_severe
+  - benchmark_hard_long_sequence
+  - benchmark_hard_critical
+  - benchmark_hard_anchor_relevant
+  - benchmark_hard_historical_nonzero
+  controlled_final:
+  - benchmark_hard_severe
+  - benchmark_hard_long_sequence
+  - benchmark_hard_critical
+  - benchmark_hard_anchor_relevant
+  - benchmark_hard_historical_nonzero
+  - benchmark_hard_validation
+  - benchmark_hard_test
+  - benchmark_hard_stress_intensity_scaled
+evaluation:
+  deterministic: true
+  controlled_episodes_per_subset: 30
+  bootstrap_resamples: 1000
+  fresh_bank_seed_start: 910000
+  fresh_generated_candidate_count: 1800
+  fresh_monte_carlo_per_variant: 60
+  fresh_unique_target_count: 60
+  final_bank_must_be_created_after_checkpoint_freeze: true
+  paper_phrase: generalization to unseen damage realizations under the established
+    hurricane-scenario framework
+fairness:
+  all_encoders_share_candidate_ids: true
+  all_encoders_share_candidate_mask: true
+  all_encoders_share_harmonized_candidate_features: true
+  all_primary_encoder_comparisons_use_a2c: true
+  learned_comparators_must_be_retrained: true
+  old_frozen_policies_are_context_only: true
+  no_fresh_result_used_for_selection: true

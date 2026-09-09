@@ -1,0 +1,26 @@
+random_seed: 32
+valuation:
+  primary_name: Source-based economic interruption damage
+  primary_rule: Apply sourced duration-dependent residential and commercial customer-damage
+    functions to noncritical load blocks and a literature-based $100/kWh critical-service
+    value to modeled critical load blocks. The critical value is a published critical-facility
+    resilience assumption, not a universal empirical VoLL estimate.
+  critical_service_value_usd_per_kwh: 100.0
+  critical_service_primary_source: https://doi.org/10.3390/su10040933
+  critical_service_federal_reproduction: https://www.energy.gov/sites/prod/files/2019/09/f66/distributed-energy-resilience-public-buildings.pdf
+  sector_duration_only_sensitivity_name: Sector-duration-only interruption damage
+  use_critical_service_value_in_paper_primary: true
+runtime:
+  run_full_harmonized_greedy: true
+  harmonized_greedy_workers: 28
+  run_harmonized_bounded_ga: true
+  ga_population: 12
+  ga_generations: 8
+  progress_every: 10
+paths:
+  case_dir: data/external/benchmark_case
+  cohort: data/external/evaluation/bounded_ga_cohort.csv
+  damage_components: data/external/evaluation/bounded_ga_damage_components.csv
+  duration_config: configs/economics/interruption_damage.yaml
+  node_config: configs/economics/load_classes.yaml
+  output_dir: outputs/bounded_ga

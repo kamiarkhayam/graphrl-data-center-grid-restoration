@@ -1,0 +1,48 @@
+price_year: 2025
+inflation:
+  cpi_u_2018: 251.107
+  cpi_u_2020: 258.811
+  cpi_u_2022: 292.655
+  cpi_u_2025: 321.943
+  source_url: https://www.bls.gov/cpi/tables/supplemental-files/historical-cpi-u-202512.pdf
+duration_dependent_valuation:
+  residential_24h_source_price_year: 2018
+  residential_noncritical_24h_usd_per_kwh:
+    low: 0.35
+    central: 0.43
+    high: 0.51
+  residential_critical_24h_usd_per_kwh:
+    low: 0.75
+    central: 0.975
+    high: 1.2
+  residential_24h_source_url: https://doi.org/10.1111/risa.12842
+  residential_review_url: https://doi.org/10.1016/j.erss.2023.103055
+  residential_critical_10day_source_price_year: 2020
+  residential_critical_10day_usd_per_kwh:
+    low: 1.7
+    central: 2.0
+    high: 2.3
+  residential_critical_10day_source_url: https://doi.org/10.1038/s41560-020-0581-1
+  commercial_24h_source_price_year: 2025
+  commercial_24h_usd_per_kwh: 31.0
+  commercial_24h_source_url: https://eta-publications.lbl.gov/sites/default/files/2026-03/ice-calculator2_phase_ii_final_report.pdf
+  long_duration_source_price_year: 2025
+  duration_points_hours:
+  - 24.0
+  - 336.0
+  - 720.0
+  residential_median_customer_damage_dollars:
+  - 15.0
+  - 200.0
+  - 600.0
+  commercial_smnr_median_customer_damage_dollars:
+  - 3700.0
+  - 13000.0
+  - 33000.0
+  commercial_lnrp_median_customer_damage_dollars:
+  - 15000.0
+  - 180000.0
+  - 520000.0
+  long_duration_source_url: https://eta-publications.lbl.gov/sites/default/files/2025-03/economic_impacts_outages_pr_final_with_cover.pdf
+  primary_commercial_duration_shape: SMNR
+  high_sensitivity_commercial_duration_shape: LNRP

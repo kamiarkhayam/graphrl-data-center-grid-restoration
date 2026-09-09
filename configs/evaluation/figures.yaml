@@ -1,0 +1,6 @@
+paper_tables: outputs/analysis
+geometry_plot_ready: data/external/plot_ready/geometry
+palette: data/external/plot_ready/model_palette.json
+severity_config: configs/evaluation/severity.yaml
+benefit_cost_tables: outputs/benefit_cost
+output_dir: outputs/figures

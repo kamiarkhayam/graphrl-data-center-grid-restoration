@@ -1,0 +1,56 @@
+source_hurricane_project_root: data/external/hurricane_inputs
+selected_hurricane_dataset_path: data/external/hurricane_inputs/filtered_hurdat2_dataframe.csv
+selected_hurricane_logic_files:
+- data/external/hurricane_inputs/hurricanes_data_cleaning_filtering.py
+- data/external/hurricane_inputs/risk_simulation.py
+- data/external/hurricane_inputs/damage_functions.py
+- data/external/hurricane_inputs/restoration_functions.py
+- data/external/hurricane_inputs/landfall_intensity_dist_fitting.py
+- data/external/hurricane_inputs/power_system_rl_single_hurricane_ppo_replay_fullstate.py
+selected_hurricane_npz_path: data/external/hurricane_inputs/filtered_hurdat2_for_GAN.npz
+mainland_polygon_csv: data/external/hurricane_inputs/us_mainland_border_coords.csv
+network_case_path: data/external/base_case
+output_path: outputs/hurricane
+random_seed: 32
+number_of_sampled_storms: 5
+number_of_monte_carlo_realizations: 10
+selected_dc_scenarios:
+- single_dc_current
+- two_dc_split_same_total
+- three_dc_split_same_total
+- high_dc_penetration
+damage_enabled_component_types:
+- overhead_distribution_line
+- transmission_line
+- substation
+equivalent_edge_damage_enabled: false
+data_center_connection_damage_enabled: false
+use_existing_fragility_logic: true
+use_existing_repair_logic: true
+sample_only_landfall_storms: true
+storm_model:
+  min_speed_mps: 20.0
+  extension_step_km: 15.0
+  intensity_decay_kd: 0.003
+  proximity_threshold_km: 100.0
+  use_observed_landfall_intensity_when_available: true
+fallback_assumptions:
+  primary_track_source: historical_filtered_hurdat2_csv
+  npz_role: metadata_check_and_named_storm_cross_reference_only
+  sample_historical_tracks_uniformly: true
+  map_overhead_distribution_edges_to_pole_fragility: true
+  disable_underground_damage_without_legacy_model: true
+  disable_transformer_and_switch_damage_without_legacy_model: true
+  exclude_equivalent_source_edges: true
+  exclude_schematic_data_center_connection_edges: true
+  overhead_distribution_pole_proxy:
+    ansi_class: 5
+    pole_height_m: 12.0
+    span_length_m_min: 30.0
+    span_length_m_max: 120.0
+units:
+  coordinates: longitude_latitude_decimal_degrees_wgs84
+  wind_speed: mps_in_exposure_tables
+  landfall_intensity_source_dataset: knots
+  rmax: km
+  repair_time: hours

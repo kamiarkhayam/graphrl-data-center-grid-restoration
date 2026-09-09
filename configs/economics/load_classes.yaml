@@ -1,0 +1,3 @@
+commercial_size_classes:
+  small_max_annual_mwh: 50.0
+  medium_max_annual_mwh: 1000.0

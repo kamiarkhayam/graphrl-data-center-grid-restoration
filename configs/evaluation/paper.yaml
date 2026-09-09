@@ -1,0 +1,73 @@
+random_seed: 32
+valuation:
+  name: source_based_economic_interruption_damage
+  critical_value_usd_per_kwh: 100.0
+  monetary_label: Source-based economic interruption damage (2025 USD)
+  economic_improvement_label: Economic-damage reduction vs Greedy
+selected_policy:
+  raw_name: GraphRL-A2C
+  display_name: GraphRL-A2C
+  expanded_name: Graph lookahead behavior cloning with greedy-relative A2C
+  architecture: verified dynamic edge-informed message-passing GNN
+  frozen: true
+displayed_policies:
+- raw_name: Greedy
+  display_name: Greedy
+- raw_name: Random Top-K
+  display_name: Random Top-K
+- raw_name: MLP-A2C
+  display_name: MLP-A2C
+- raw_name: CNN-A2C
+  display_name: CNN-A2C
+- raw_name: GraphBC
+  display_name: GraphBC
+- raw_name: GraphRL-PPO
+  display_name: GraphRL-PPO
+- raw_name: GraphRL-A2C
+  display_name: GraphRL-A2C
+subsets:
+  controlled_main:
+  - benchmark_hard_severe
+  - benchmark_hard_long_sequence
+  - benchmark_hard_critical
+  - benchmark_hard_anchor_relevant
+  controlled_final:
+  - benchmark_hard_severe
+  - benchmark_hard_long_sequence
+  - benchmark_hard_critical
+  - benchmark_hard_anchor_relevant
+  - benchmark_hard_historical_nonzero
+  - benchmark_hard_validation
+  - benchmark_hard_test
+  - benchmark_hard_stress_intensity_scaled
+  fresh_main:
+  - fresh_severe
+  - fresh_long_sequence
+  - fresh_critical
+  - fresh_anchor_relevant
+dc_evaluation:
+  candidate_k: 50
+  deterministic: true
+  controller: rule_based_anchor
+  resources:
+  - R0_no_dc_anchor
+  - R1_current_power_bounded_anchor
+  - E12_finite_energy_12h
+  - E24_finite_energy_24h
+  policies:
+  - Greedy
+  - GraphRL-A2C
+  progress_every: 10
+runtime:
+  trajectory_grid_hours: 1.0
+  bootstrap_resamples: 2000
+  resume: true
+  require_cuda_for_neural_work: true
+  expected_device: NVIDIA GeForce RTX 4090
+training_config: configs/policies/training.yaml
+paths:
+  case_dir: data/external/benchmark_case
+  manifest: data/external/evaluation/controlled_manifest.csv
+  fresh_manifest: data/external/evaluation/fresh_subset_manifest.csv
+  fresh_damage_components: data/external/evaluation/fresh_damage_components.csv
+  output_dir: outputs/evaluation

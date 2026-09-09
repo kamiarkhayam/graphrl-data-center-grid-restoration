@@ -1,0 +1,7 @@
+node_id,x,y,longitude,latitude,voltage_kv,degree,is_load,is_substation,is_transmission,is_distribution,is_data_center,is_critical
+T_SUPER_SOURCE_V03,0,0,0,0,12,2,False,False,True,False,False,False
+J,1,0,1,0,12,4,False,True,False,True,False,False
+A,2,0,2,0,12,1,True,False,False,True,False,True
+B,0,1,0,1,12,1,True,False,False,True,False,False
+C,1,1,1,1,12,1,True,False,False,True,False,False
+D,2,1,2,1,12,1,True,False,False,True,False,False

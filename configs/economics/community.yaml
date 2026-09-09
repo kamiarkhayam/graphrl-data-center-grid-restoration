@@ -1,0 +1,145 @@
+experiment_name: community
+analysis:
+  selected_policy: true_gnn_lookahead_bc_a2c
+  selected_policy_display: True-GNN-A2C
+  primary_subset: benchmark_hard_historical_nonzero
+  primary_valuation_method: Duration-dependent sector valuation
+  recurrence_interval_years:
+  - 5.0
+  - 10.0
+  - 20.0
+  reference_recurrence_years: 10.0
+  project_life_years: 20
+  real_discount_rate: 0.031
+  analysis_dollar_year: 2025
+  resource_case_order:
+  - E12
+  - E24
+  - Power-only reference
+enablement_cost:
+  source_dollar_year: 2022
+  cpi_u_2022: 292.655
+  cpi_u_2025: 321.943
+  source_case_export_kw: 918.0
+  switchgear_modification_per_site_2022_dollars: 120272.0
+  scada_2022_dollars_per_kw: 382.1
+  microgrid_controller_per_site_2022_dollars: 265225.0
+  cybersecurity_commissioning_per_site_2022_dollars: 212180.0
+  communications_meter_relays_breakers_per_site_2022_dollars: 320962.0
+  underground_feeder_2022_dollars_per_foot: 403.14
+  route_length_multiplier: 1.2
+  area_cost_factor: 0.92
+  contingency_fraction_of_subtotal: 0.2
+  overhead_fraction_of_contract: 0.057
+  design_fraction_of_contract: 0.06
+  class5_low_multiplier: 0.7
+  class5_high_multiplier: 1.65
+  cost_scopes:
+    controls_and_protection_only:
+      display_name: Controls/protection retrofit
+      include_new_scada: false
+      include_dedicated_feeder: false
+      role: lower engineering scope; assumes existing site SCADA and 69 kV intertie
+        can be reused
+    existing_intertie_retrofit:
+      display_name: Existing-intertie retrofit
+      include_new_scada: true
+      include_dedicated_feeder: false
+      role: reference scope; adds new SCADA and full reverse-power intertie modifications
+        at all three sites
+    dedicated_express_feeders:
+      display_name: Dedicated-feeder buildout
+      include_new_scada: true
+      include_dedicated_feeder: true
+      role: conservative topology sensitivity using routed geometric distances to
+        the connected 69 kV nodes
+  primary_cost_scope: existing_intertie_retrofit
+  source_url: https://www.nrel.gov/docs/fy22osti/81623.pdf
+  inflation_source_url: https://www.bls.gov/regions/mid-atlantic/data/ConsumerPriceIndexAnnualandSemiAnnual_Table.htm
+stage1:
+  selected_local_health_dollars_per_mwh: 187.59076802240386
+  selected_health_assumption: 95% SCR NOx reduction or equivalent lower-emission control
+  include_provider_fuel_and_vom: true
+  include_outage_export_local_health: true
+  include_outage_export_climate_damage: true
+stage2:
+  community_boundary: host locality
+  public_enablement_shares:
+  - 0.0
+  - 0.25
+  - 0.5
+  - 1.0
+  selected_enablement_cost_scope: existing_intertie_retrofit
+  selected_enablement_estimate_class: reference
+  selected_fiscal_case: reference
+  selected_rate_case: reference_half_growth
+  include_outage_export_local_health: true
+  include_outage_export_climate: true
+  include_routine_generator_local_health: true
+  include_routine_generator_climate: true
+ratepayer_effect:
+  source_dollar_year: 2024
+  cpi_u_2024: 313.689
+  cpi_u_2025: 321.943
+  portfolio_attribution_denominator_mw: 5050.0
+  attribution_method: v0.3 portfolio MW divided by reported Virginia data-center operating
+    MW
+  cases:
+    protected_rate:
+      display_name: Protected-rate lower bound
+      monthly_2030_dollars_per_1000_kwh: 0.0
+      monthly_2040_dollars_per_1000_kwh: 0.0
+    reference_half_growth:
+      display_name: Reference rate impact
+      monthly_2030_dollars_per_1000_kwh: 7.0
+      monthly_2040_dollars_per_1000_kwh: 14.0
+    high_unconstrained_vcea:
+      display_name: High rate impact
+      monthly_2030_dollars_per_1000_kwh: 23.0
+      monthly_2040_dollars_per_1000_kwh: 37.0
+  source_url: https://jlarc.virginia.gov/pdfs/reports/Rpt598.pdf
+  current_safeguard_source_url: https://www.scc.virginia.gov/about-the-scc/newsreleases/release/scc-issues-order-on-dev-biennial-review-2025/scc-rules-in-dev-biennial-review-case.html
+fiscal_effect:
+  taxable_equipment_block_per_facility_dollars: 150000000.0
+  equipment_refresh_years: 5.0
+  local_sales_tax_share: 0.01
+  cases:
+    low:
+      display_name: Low local fiscal return
+      five_year_property_tax_per_150m_block_dollars: 400000.0
+    reference:
+      display_name: Midpoint local fiscal sensitivity
+      five_year_property_tax_per_150m_block_dollars: 5600000.0
+    high:
+      display_name: High local fiscal return
+      five_year_property_tax_per_150m_block_dollars: 10800000.0
+  source_url: https://jlarc.virginia.gov/pdfs/reports/Rpt598.pdf
+employment_effect:
+  virginia_data_center_operational_capacity_mw: 5050.0
+  statewide_operations_jobs_total: 14817.0
+  statewide_operations_jobs_direct: 4373.0
+  statewide_operations_labor_income_total_dollars: 1188400000.0
+  statewide_operations_labor_income_direct_dollars: 419400000.0
+  statewide_operations_gdp_total_dollars: 2699000000.0
+  statewide_operations_gdp_direct_dollars: 1051100000.0
+  source_url: https://jlarc.virginia.gov/pdfs/reports/Rpt598.pdf
+  treatment: report as economic-impact context; do not add gross jobs, payroll, or
+    GDP to the BCR
+routine_generator_testing:
+  annual_generator_hours: 6.5
+  average_capacity_fraction: 0.5
+  local_health_dollars_per_mwh: 187.59076802240386
+  climate_damage_dollars_per_mwh: 166.76677045461943
+  source_url: https://jlarc.virginia.gov/pdfs/reports/Rpt598.pdf
+documentation:
+  stage1_label: Engineering lifecycle resource BCR
+  stage2_label: Host-community benefit-to-burden ratio
+  recurrence_warning: Recurrence intervals are explicit sensitivities, not estimated
+    hurricane return periods.
+  employment_warning: Employment and gross labor income are reported but are not additive
+    welfare benefits.
+  tariff_warning: JLARC rate paths are Virginia industry-growth projections; portfolio
+    attribution is a transparent screening allocation, not a utility rate case.
+  cost_warning: Enablement estimates are AACE Class 5 analog screens, not construction
+    bids.
+  economic_impact_bca_source_url: https://www.transportation.gov/grants/dot-navigator/what-is-a-benefit-cost-analysis

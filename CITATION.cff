@@ -1,0 +1,15 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite this software record."
+title: "GraphRL for Data-Center-Supported Distribution Restoration"
+type: software
+version: 0.1.0
+license: MIT
+authors:
+  - family-names: Khayambashi
+    given-names: Kamiar
+    affiliation: University of Virginia
+  - family-names: Alemazkoor
+    given-names: Negin
+    affiliation: University of Virginia
+abstract: >-
+  Research code for graph reinforcement learning and prescribed, power- and energy-constrained data-center support in sequential distribution-system restoration under hurricane-inspired disruptions, with resilience and benefit-cost evaluation.

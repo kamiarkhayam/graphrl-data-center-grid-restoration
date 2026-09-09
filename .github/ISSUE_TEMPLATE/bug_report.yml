@@ -1,0 +1,21 @@
+name: Bug report
+description: Report an installation, interface, or numerical-contract problem.
+body:
+  - type: textarea
+    id: behavior
+    attributes:
+      label: Expected and observed behavior
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Minimal reproduction
+      description: Include a command and a tiny synthetic input; do not upload research data or checkpoints.
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: Python, operating system, package version, device and relevant dependency versions.
